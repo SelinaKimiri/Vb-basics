@@ -1,0 +1,49 @@
+import tkinter as tk
+
+def load_object_demo():
+    # Function to load and display "Object Demonstrations" form
+    object_demo_form = tk.Toplevel(root)
+    object_demo_form.title("Object Demonstrations")
+    # Add widgets and layout for the "Object Demonstrations" form here
+
+def exit_application():
+    # Function to terminate the application
+    root.destroy()
+
+def maximize_form(event):
+    # Function to maximize the form and change background color to RED
+    root.attributes('-fullscreen', True)
+    root.configure(bg='red')
+
+def restore_form(event):
+    # Function to restore the form size and change background color to default
+    root.attributes('-fullscreen', False)
+    root.configure(bg=root_original_bg)
+
+# Initialize the Tkinter application
+root = tk.Tk()
+root.title("Main Window")
+
+# Store original background color of the root window
+root_original_bg = root.cget('bg')
+
+# Create buttons
+load_button = tk.Button(root, text="Load Object Demo", command=load_object_demo, padx=10, pady=5)
+load_button.grid(row=0, column=0, padx=10, pady=10)
+
+exit_button = tk.Button(root, text="Exit", command=exit_application, padx=10, pady=5)
+exit_button.grid(row=1, column=0, padx=10, pady=10)
+
+# Assign tooltips to buttons
+load_button_tooltip = tk.ttk.Label(root, text="Click to load Object Demonstrations form")
+load_button_tooltip.grid(row=0, column=1, padx=10, pady=10)
+
+exit_button_tooltip = tk.ttk.Label(root, text="Click to exit the application")
+exit_button_tooltip.grid(row=1, column=1, padx=10, pady=10)
+
+# Bind events to the root window
+root.bind("<Button-1>", maximize_form)
+root.bind("<Button-3>", restore_form)
+
+# Start the Tkinter event loop
+root.mainloop()
